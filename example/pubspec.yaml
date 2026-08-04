@@ -1,0 +1,24 @@
+name: debug_menu_overlay_example
+description: Runnable example for the debug_menu_overlay package.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  # パッケージ本体と同じ下限に合わせる。
+  sdk: ^3.7.0
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  debug_menu_overlay:
+    path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 5.0.0
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,8 @@
+# example もパッケージ本体と同じルールで解析する。
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    require_trailing_commas: true
+    prefer_final_locals: true
+    always_declare_return_types: true

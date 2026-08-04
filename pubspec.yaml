@@ -1,0 +1,26 @@
+name: debug_menu_overlay
+description: >-
+  An in-app debug menu that opens on a multi-finger tap and lives in its own
+  overlay and Navigator, so it never touches your app's router or analytics.
+version: 0.1.0
+repository: https://github.com/POPOPOinc/debug_menu_overlay
+
+topics:
+  - debug
+  - developer-tools
+  - overlay
+
+environment:
+  sdk: ^3.7.0
+  flutter: ">=3.29.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: 5.0.0
+
+flutter:
