@@ -1,5 +1,7 @@
 # debug_menu_overlay
 
+[English](README.md)
+
 4 本指のタップで開くアプリ内デバッグメニューです。  
 
 | 起動画像 | ページ遷移 | ダークモード切り替え |
