@@ -57,16 +57,33 @@ MaterialApp(
 cd example && flutter run
 ```
 
-### ホストをどこに置くか
+## 高度な使い方
 
-**`MaterialApp` より下**（`builder` の中か、`home` に渡すものを包む形）に置いてください。そうすれば
-ウィンドウがテーマ・文字方向・MediaQuery・material のローカライズを継承できます。同時に**項目が
-必要とするものより上**に置いてください。`DebugMenuScope.appContext` はホスト自身の context なので、
-項目はさらに上位にあるストア・provider・サービスロケーターを読めます。
+### `DebugMenuHost` をウィジェットツリーのどこに置くか
+
+`DebugMenuHost` は次の 2 つの条件を**両方**満たす位置に置いてください。
+
+- **`MaterialApp` より内側（下）** — `MaterialApp.builder` の中か、`home` に渡すウィジェットを包む形に
+  する。これでデバッグウィンドウが `MaterialApp` のテーマ・文字方向・MediaQuery・material の
+  ローカライズを継承できます。
+- **項目が読みたい Provider・redux ストア・サービスロケーターより内側（下）** — `DebugMenuScope.appContext`
+  はホスト自身の `BuildContext` です。`BuildContext` は自分より外側（祖先）にあるものしか探せないので、
+  項目が `scope.appContext` 経由で読みたい状態は、必ずホストより外側に置かれている必要があります。
+
+ウィジェットツリーのイメージ:
+
+```
+MaterialApp
+  └─ Provider / redux Store など（項目が読みたいもの）
+      └─ DebugMenuHost   ← ここに置く
+          └─ 実際のアプリ本体（home など）
+```
 
 ```dart
 DebugMenuItem(
   title: 'Account',
+  // AccountDebugTile はこの appContext を使って、ホストより外側にある
+  // Account 用の provider を読みに行く。
   builder: (context, scope) => AccountDebugTile(appContext: scope.appContext),
 );
 ```
@@ -139,4 +156,4 @@ DebugMenuHost(
 
 ## ライセンス
 
-LICENSE は [LICENSE](../LICENSE) を参照してください。
+LICENSE は [LICENSE](./LICENSE) を参照してください。
